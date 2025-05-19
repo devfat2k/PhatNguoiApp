@@ -1,131 +1,139 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React, { useEffect, useState } from 'react';
+import RootNavigator from './src/navigation';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor, store } from './src/redux/store';
+import { PaperProvider } from 'react-native-paper';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { Animated, Dimensions, StyleSheet } from 'react-native';
+import BootSplash from 'react-native-bootsplash';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import OnboardingScreen from './src/containers/Onboarding/OnboardingScreen';
+const { width } = Dimensions.get('window');
+type Props = {
+  onAnimationEnd: () => void;
+};
+const AnimatedBootSplash = ({ onAnimationEnd }: Props) => {
+  const [scale] = useState(() => new Animated.Value(1));
+  const { container, logo } = BootSplash.useHideAnimation({
+    manifest: require('./src/assets/bootsplash/manifest.json'),
+    logo: require('./src/assets/bootsplash/logo.png'),
+    statusBarTranslucent: true,
+    navigationBarTranslucent: false,
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+    animate: () => {
+      Animated.sequence([
+        Animated.timing(scale, {
+          useNativeDriver: true,
+          toValue: 1.2,
+          duration: 300,
+        }),
+        Animated.timing(scale, {
+          useNativeDriver: true,
+          toValue: 0,
+          duration: 500,
+        }),
+      ]).start(() => {
+        onAnimationEnd();
+      });
+    },
+  });
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+    <Animated.View {...container} style={[container.style, styles.splashContainer]}>
+      <Animated.Image {...logo} style={[logo.style, { transform: [{ scale }] }]} />
+    </Animated.View>
   );
-}
+};
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+const App = () => {
+  const [visibleBootSplash, setVisibleBootSplash] = useState<boolean>(true);
+  const [isOnboardingVisible, setOnboardingVisible] = useState<boolean>(false);
+  const [isAppReady, setAppReady] = useState<boolean>(false);
+  const [slidePosition] = useState(new Animated.Value(width));
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  useEffect(() => {
+    const prepareApp = async () => {
+      try {
+        const hasSeenOnboarding = await AsyncStorage.getItem('hasSeenOnboarding');
+        setOnboardingVisible(!hasSeenOnboarding);
+        setAppReady(true);
+      } catch (error) {
+        console.log('Error preparing app:', error);
+        setOnboardingVisible(true);
+        setAppReady(true);
+      }
+    };
+    prepareApp();
+  }, []);
+
+  const handleBootSplashEnd = () => {
+    setVisibleBootSplash(false);
+    Animated.timing(slidePosition, {
+      toValue: 0,
+      duration: 400,
+      useNativeDriver: true,
+    }).start();
   };
 
-  /*
-   * To keep the template simple and small we're adding padding to prevent view
-   * from rendering under the System UI.
-   * For bigger apps the recommendation is to use `react-native-safe-area-context`:
-   * https://github.com/AppAndFlow/react-native-safe-area-context
-   *
-   * You can read more about it here:
-   * https://github.com/react-native-community/discussions-and-proposals/discussions/827
-   */
-  const safePadding = '5%';
+  const handleOnboardingDone = async () => {
+    Animated.timing(slidePosition, {
+      toValue: -width,
+      duration: 300,
+      useNativeDriver: true,
+    }).start(async () => {
+      await AsyncStorage.setItem('hasSeenOnboarding', 'true');
+      setOnboardingVisible(false);
+      Animated.timing(slidePosition, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    });
+  };
 
+  const renderContent = () => {
+    if (isOnboardingVisible) {
+      return <OnboardingScreen onDone={handleOnboardingDone} />;
+    } else if (isAppReady) {
+      return <RootNavigator />;
+    }
+    return null;
+  };
   return (
-    <View style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        style={backgroundStyle}>
-        <View style={{paddingRight: safePadding}}>
-          <Header/>
-        </View>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-            paddingHorizontal: safePadding,
-            paddingBottom: safePadding,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </View>
+    <Provider store={store}>
+      {/* <PersistGate loading={null} persistor={persistor}> */}
+      <GestureHandlerRootView>
+        <SafeAreaProvider>
+          <PaperProvider>
+            {visibleBootSplash ? <AnimatedBootSplash onAnimationEnd={handleBootSplashEnd} /> : null}
+            <Animated.View style={[styles.content, { transform: [{ translateX: slidePosition }] }]}>
+              {renderContent()}
+            </Animated.View>
+          </PaperProvider>
+        </SafeAreaProvider>
+      </GestureHandlerRootView>
+      {/* </PersistGate> */}
+    </Provider>
   );
-}
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+};
+export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  content: {
+    flex: 1,
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  logo: {
+    resizeMode: 'contain',
   },
-  highlight: {
-    fontWeight: '700',
+  splashContainer: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    zIndex: 10,
   },
 });
-
 export default App;

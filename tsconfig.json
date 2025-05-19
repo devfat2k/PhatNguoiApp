@@ -1,3 +1,53 @@
 {
-  "extends": "@react-native/typescript-config/tsconfig.json"
+  "extends": "@react-native/typescript-config/tsconfig.json",
+  "ts-node": {
+    "compilerOptions": {
+      "module": "ESNext",
+      "moduleResolution": "Node"
+    }
+  },
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "jsx": "react-native",
+    "baseUrl": ".",
+    "target": "esnext",
+    "noUnusedLocals": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "allowUnreachableCode": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noUnusedParameters": true,
+    "checkJs": true,
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@src": ["./src"],
+      "@src/*": ["./src/*"],
+      "@components": ["./src/components"],
+      "@components/*": ["./src/components/*"],
+      "@context": ["./src/context"],
+      "@context/*": ["./src/context/*"],
+      "@redux": ["./src/redux"],
+      "@redux/*": ["./src/redux/*"],
+      "@global": ["./src/global"],
+      "@hooks": ["./src/hooks"],
+      "@types": ["./src/types"],
+      "@container": ["./src/containers"],
+      "@container/*": ["./src/containers/*"],
+      "@utils": ["./src/utils"],
+      "@utils/*": ["./src/utils/*"],
+      "@assets": ["./assets"],
+      "@assets/*": ["./assets/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@navigation": ["./src/navigation"],
+      "@navigation/*": ["./src/navigation/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }
