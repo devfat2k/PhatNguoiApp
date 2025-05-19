@@ -26,7 +26,7 @@ const OnboardingScreen: FC<OnboardingScreenProps> = ({ onDone }) => {
   return (
     <MyWrapper isSafe>
       <View style={styles.container}>
-        <View style={{ flex: 1, alignItems: 'center' }}>
+        <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}>
           <Carousel
             ref={ref}
             width={scaleWidth(280)}
@@ -54,7 +54,7 @@ const OnboardingScreen: FC<OnboardingScreenProps> = ({ onDone }) => {
           />
         </View>
 
-        <View style={{ flex: 2, alignItems: 'center' }}>
+        <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}>
           <View style={{ marginBottom: scaleHeight(24), alignItems: 'center' }}>
             <Text style={styles.textWelcome}>Chào mừng bạn đến với</Text>
             <Text style={styles.textTitle}>Tra Cứu Phạt Nguội</Text>
@@ -64,7 +64,7 @@ const OnboardingScreen: FC<OnboardingScreenProps> = ({ onDone }) => {
             đến xe của bạn
           </Text>
         </View>
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, justifyContent: 'center' }}>
           <TouchableOpacity onPress={() => {}}>
             <LinearGradient
               style={styles.btn}

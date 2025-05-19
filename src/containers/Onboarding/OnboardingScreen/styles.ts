@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: Padding._XLARGE,
+    paddingTop: scaleHeight(101),
   },
   textWelcome: {
     color: Colors.Neutral_500,
