@@ -278,3 +278,21 @@ export const TypographyStyle = StyleSheet.create({
     fontFamily: FONT_FAMILY_REGULAR,
   },
 });
+
+export const GlobalCenter = StyleSheet.create({
+  center: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  centerBetween: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  centerAround: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+});

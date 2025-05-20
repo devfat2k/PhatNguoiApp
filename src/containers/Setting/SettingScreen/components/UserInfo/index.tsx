@@ -1,14 +1,14 @@
+import React, { FC } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { MyImage } from '@src/components';
 import { Colors } from '@src/utils';
 import { PremiumIcon } from '@src/utils/icon';
 import { scaleHeight, scaleWidth } from '@src/utils/styles/mixins';
 import { Gap, Radius } from '@src/utils/styles/spacing';
 import { TypographyStyle } from '@src/utils/styles/typography';
-import React, { FC } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 interface UserInfoProps {}
-const UserInfo: FC<UserInfoProps> = ({}) => {
+const UserInfo: FC<UserInfoProps> = () => {
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: Gap._MEDIUM }}>
@@ -18,7 +18,6 @@ const UserInfo: FC<UserInfoProps> = ({}) => {
           <Text style={styles.textEmail}>example@gmail.com</Text>
         </View>
       </View>
-
       <TouchableOpacity onPress={() => {}}>
         <PremiumIcon />
       </TouchableOpacity>
@@ -28,10 +27,10 @@ const UserInfo: FC<UserInfoProps> = ({}) => {
 
 export const styles = StyleSheet.create({
   container: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    // justifyContent: 'center',
   },
   avatar: {
     width: scaleWidth(40),

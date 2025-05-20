@@ -4,8 +4,10 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { mainStackParamList } from '../../../navigation/type';
 import { MyHeader, MyWrapper } from '@components';
 import { styles } from './styles';
-import { UserInfo } from './components';
+import { PremiumPackage, UserInfo } from './components';
 import { scaleHeight } from '@src/utils/styles/mixins';
+import { OptionsSetting } from './constants';
+import { ArrowRightIcon } from '@src/utils/icon';
 interface SettingScreenProps extends NativeStackScreenProps<mainStackParamList, 'NotificationScreen'> {}
 const SettingScreen: FC<SettingScreenProps> = () => {
   return (
@@ -13,10 +15,23 @@ const SettingScreen: FC<SettingScreenProps> = () => {
       <MyHeader containerHeaderStyle={{ height: scaleHeight(24) }} />
       <View style={styles.container}>
         <UserInfo />
-        <View></View>
-        {/* <TouchableOpacity style={styles.btnLogout}>
-          <Text style={styles.textBtn}>Đăng xuất</Text>
-        </TouchableOpacity> */}
+        <PremiumPackage />
+        <View style={{ flex: 15 }}>
+          {OptionsSetting.map((item, index) => {
+            return (
+              <TouchableOpacity key={index} style={styles.containerOptions} onPress={() => {}}>
+                <View style={styles.center}>
+                  {item.icon}
+                  <Text style={styles.textLabel}>{item.label}</Text>
+                </View>
+                <ArrowRightIcon />
+              </TouchableOpacity>
+            );
+          })}
+          <TouchableOpacity style={styles.btnLogout}>
+            <Text style={styles.textBtn}>Đăng xuất</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </MyWrapper>
   );
