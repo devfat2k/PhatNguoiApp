@@ -1,5 +1,5 @@
-import React from 'react';
-import { View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Keyboard, View } from 'react-native';
 import CustomTabBar from './CustomTabBar/index';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -89,11 +89,27 @@ function SettingStack() {
 }
 
 export function AppTab() {
+  const [isKeyboardVisible, setKeyboardVisible] = useState<boolean>(false);
+
+  useEffect(() => {
+    const showSubScription = Keyboard.addListener('keyboardDidShow', () => {
+      setKeyboardVisible(true);
+    });
+
+    const hideSubScription = Keyboard.addListener('keyboardDidHide', () => {
+      setKeyboardVisible(false);
+    });
+
+    return () => {
+      showSubScription.remove();
+      hideSubScription.remove();
+    };
+  }, []);
   return (
     <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
       <Tab.Navigator
         screenOptions={{ headerShown: false, tabBarHideOnKeyboard: true }}
-        tabBar={props => <CustomTabBar {...props} />}
+        tabBar={props => (isKeyboardVisible ? <View /> : <CustomTabBar {...props} />)}
       >
         <Tab.Screen name={'HomeTab'} component={HomeStack} />
         <Tab.Screen name={'VehicleTab'} component={VehicleStack} />

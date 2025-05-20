@@ -65,7 +65,7 @@ const OnboardingScreen: FC<OnboardingScreenProps> = ({ onDone }) => {
           </Text>
         </View>
         <View style={{ flex: 1, justifyContent: 'center' }}>
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity onPress={onDone}>
             <LinearGradient
               style={styles.btn}
               colors={['#FDB022', '#12B76A']}
