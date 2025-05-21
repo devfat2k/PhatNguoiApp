@@ -5,4 +5,5 @@ export type mainStackParamList = {
   NotificationScreen: undefined;
   SettingScreen: undefined;
   SearchResultsScreen: undefined;
+  PrivacyScreen: undefined;
 };

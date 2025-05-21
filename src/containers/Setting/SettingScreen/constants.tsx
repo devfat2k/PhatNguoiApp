@@ -1,3 +1,4 @@
+import { navigate } from '@src/navigation/RootNavigation';
 import { LangIcon, NotiIcon, ProtectIcon, UserIcon } from '@src/utils/icon';
 
 export const OptionsSetting = [
@@ -15,6 +16,7 @@ export const OptionsSetting = [
     id: '3',
     label: 'Chính sách bảo mật',
     icon: <ProtectIcon />,
+    onPress: () => navigate('PrivacyScreen'),
   },
   {
     id: '4',

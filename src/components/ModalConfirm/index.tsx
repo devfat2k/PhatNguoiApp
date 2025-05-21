@@ -15,6 +15,7 @@ interface MyModalConfirmProps {
   icon: any;
   confirmText?: string;
   onPressConfirm: () => void;
+  confirmButtonColor?: string;
 }
 const MyModalConfirm: FC<MyModalConfirmProps> = ({
   isVisible,
@@ -23,7 +24,8 @@ const MyModalConfirm: FC<MyModalConfirmProps> = ({
   title,
   content,
   icon,
-  confirmText = 'Delete',
+  confirmText = 'Xác nhận',
+  confirmButtonColor,
 }) => {
   return (
     <ModalAlert isVisible={isVisible} onBackdropPress={() => setIsVisible(false)}>
@@ -38,7 +40,15 @@ const MyModalConfirm: FC<MyModalConfirmProps> = ({
           <TouchableOpacity style={styles.btnCancel} onPress={() => setIsVisible(false)}>
             <Text style={styles.textCancel}>{'Đóng'}</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btnLogout} onPress={onPressConfirm}>
+          <TouchableOpacity
+            style={[
+              styles.btnLogout,
+              {
+                backgroundColor: confirmButtonColor ? confirmButtonColor : Colors.Red_600,
+              },
+            ]}
+            onPress={onPressConfirm}
+          >
             <Text style={styles.textLogout}>{confirmText}</Text>
           </TouchableOpacity>
         </View>
@@ -76,11 +86,11 @@ const styles = StyleSheet.create({
   },
   textCancel: {
     color: Colors.Neutral_500,
-    ...TypographyStyle.BODY_MEDIUM_TIGHT_REGULAR,
+    ...TypographyStyle.BODY_MEDIUM_TIGHT_BOLD,
   },
   textLogout: {
-    color: Colors.Neutral_100,
-    ...TypographyStyle.BODY_MEDIUM_TIGHT_REGULAR,
+    color: Colors.Neutral_0,
+    ...TypographyStyle.BODY_MEDIUM_TIGHT_BOLD,
   },
   containerBtn: {
     flexDirection: 'row',

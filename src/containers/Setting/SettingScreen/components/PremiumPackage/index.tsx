@@ -6,8 +6,10 @@ import { scaleHeight, scaleWidth } from '@src/utils/styles/mixins';
 import { Gap, Padding, Radius } from '@src/utils/styles/spacing';
 import { TypographyStyle } from '@src/utils/styles/typography';
 
-interface PremiumPackageProps {}
-const PremiumPackage: FC<PremiumPackageProps> = () => {
+interface PremiumPackageProps {
+  onPress: () => void;
+}
+const PremiumPackage: FC<PremiumPackageProps> = ({ onPress }) => {
   return (
     <View style={styles.container}>
       <PremiumIcon />
@@ -16,7 +18,7 @@ const PremiumPackage: FC<PremiumPackageProps> = () => {
         <Text style={styles.text2}>Gia hạn để tiếp tục dùng đầy đủ tính năng, không gián đoạn!</Text>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
           <Text style={styles.text3}> Còn lại: 3 ngày</Text>
-          <TouchableOpacity style={styles.btn}>
+          <TouchableOpacity style={styles.btn} onPress={onPress}>
             <Text style={styles.textBtn}>Gia hạn ngay</Text>
           </TouchableOpacity>
         </View>
