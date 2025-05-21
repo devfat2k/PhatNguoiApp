@@ -2,8 +2,8 @@ import React, { FC } from 'react';
 import { View } from 'react-native';
 import RNModal, { ModalProps as RNModalProps } from 'react-native-modal';
 import { Colors } from '@src/utils';
-import { styles } from './styles';
 import useBackHandler from '@src/hooks/useBackHandler';
+import { styles } from './styles';
 
 interface MyModalAlertProps extends Partial<RNModalProps> {
   isVisible: boolean;

@@ -1,10 +1,10 @@
-import { Colors, Mixins } from '@utils';
 import React from 'react';
 import { ColorValue, Text, TouchableOpacity, View } from 'react-native';
 import Toast from 'react-native-toast-message';
+import { Colors, Mixins } from '@utils';
 import { default as AntDesign } from 'react-native-vector-icons/AntDesign';
 import { default as Feather } from 'react-native-vector-icons/Feather';
-import { default as FontAwesome5 } from 'react-native-vector-icons/FontAwesome5';
+import { SuccessIcon } from '@src/utils/icon';
 
 interface BaseToastProps {
   bgColor: ColorValue;
@@ -17,7 +17,7 @@ interface BaseToastProps {
   position?: string;
 }
 const MyBaseToast = (props: BaseToastProps) => {
-  const { bgColor, iconName, text, hide, isCheckNetwork, textColor, position, iconColor } = props;
+  const { bgColor, iconName, text, hide, isCheckNetwork, textColor, position } = props;
   return (
     <View
       style={{
@@ -38,12 +38,13 @@ const MyBaseToast = (props: BaseToastProps) => {
             width: 20,
             height: 20,
             borderRadius: 10,
-            backgroundColor: iconColor,
+            // backgroundColor: iconColor,
             justifyContent: 'center',
             alignItems: 'center',
           }}
         >
-          <FontAwesome5 name={iconName} color={bgColor} size={10} />
+          {/* <FontAwesome5 name={iconName} color={bgColor} size={10} /> */}
+          <SuccessIcon />
         </View>
       )}
       {isCheckNetwork && <Feather name={iconName} color={Colors.NEUTRAL_PRIMARY} size={18} />}
@@ -77,7 +78,7 @@ const toastConfig = {
         <MyBaseToast
           {...props}
           hide={props.hide}
-          bgColor={Colors}
+          bgColor={Colors.Neutral_900}
           iconColor={'#12B76A'}
           iconName="check"
           text={props.props.text}

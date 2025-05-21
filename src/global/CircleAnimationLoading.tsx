@@ -6,7 +6,7 @@ import { useSharedValue, withRepeat, withTiming } from 'react-native-reanimated'
 
 // const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
-const LoadingAnimation: React.FC = () => {
+const LoadingAnimation = () => {
   const progress = useSharedValue(0);
 
   useEffect(() => {

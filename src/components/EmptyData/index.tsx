@@ -18,7 +18,11 @@ const MyEmptyData: FC<MyEmptyDataProps> = ({ icon, text }) => {
         <EmptyIcon />
       </ConditionalRenderer>
       <ConditionalRenderer condition={!!text}>
-        <Text style={{ ...TypographyStyle.BODY_REGULAR_NORMAL_REGULAR, color: Colors.Neutral_500 }}>{text}</Text>
+        <Text
+          style={{ ...TypographyStyle.BODY_REGULAR_NORMAL_REGULAR, color: Colors.Neutral_500, textAlign: 'center' }}
+        >
+          {text}
+        </Text>
       </ConditionalRenderer>
       <ConditionalRenderer condition={!text}>
         <Text style={{ ...TypographyStyle.BODY_REGULAR_NORMAL_REGULAR, color: Colors.Neutral_500 }}>

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { mainStackParamList } from '../../../navigation/type';
-import { MyHeader, MyWrapper } from '@components';
+import { MyDivider, MyHeader, MyWrapper } from '@components';
 import { styles } from './styles';
 import { PremiumPackage, UserInfo } from './components';
 import { scaleHeight } from '@src/utils/styles/mixins';
@@ -19,13 +19,16 @@ const SettingScreen: FC<SettingScreenProps> = () => {
         <View style={{ flex: 15 }}>
           {OptionsSetting.map((item, index) => {
             return (
-              <TouchableOpacity key={index} style={styles.containerOptions} onPress={() => {}}>
-                <View style={styles.center}>
-                  {item.icon}
-                  <Text style={styles.textLabel}>{item.label}</Text>
-                </View>
-                <ArrowRightIcon />
-              </TouchableOpacity>
+              <View key={index}>
+                <TouchableOpacity style={styles.containerOptions} onPress={() => {}}>
+                  <View style={styles.center}>
+                    {item.icon}
+                    <Text style={styles.textLabel}>{item.label}</Text>
+                  </View>
+                  <ArrowRightIcon />
+                </TouchableOpacity>
+                {OptionsSetting.length - 1 === index ? <></> : <MyDivider height={1} />}
+              </View>
             );
           })}
           <TouchableOpacity style={styles.btnLogout}>

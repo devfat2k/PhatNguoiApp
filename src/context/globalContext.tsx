@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { useGlobal, UseGlobalStateType } from './useGlobal';
 import { GlobalContext } from './context';
+import { useGlobal, UseGlobalStateType } from '@src/hooks';
 
 // In case use outside component
 let GlobalContextProviderValue: UseGlobalStateType;

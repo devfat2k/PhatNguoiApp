@@ -295,4 +295,9 @@ export const GlobalCenter = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
   },
+  centerLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    // justifyContent: 'center',
+  },
 });

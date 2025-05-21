@@ -29,12 +29,12 @@ const OnboardingScreen: FC<OnboardingScreenProps> = ({ onDone }) => {
         <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}>
           <Carousel
             ref={ref}
-            width={scaleWidth(280)}
-            height={scaleHeight(280)}
+            width={scaleWidth(335)}
+            height={scaleHeight(335)}
             data={CarouselList}
             onProgressChange={progress}
             renderItem={({ item, index }) => (
-              <MyImage key={index} source={item.image} style={{ width: scaleWidth(280), height: scaleHeight(280) }} />
+              <MyImage key={index} source={item.image} style={{ width: scaleWidth(335), height: scaleHeight(335) }} />
             )}
           />
           <Pagination.Basic
@@ -55,7 +55,7 @@ const OnboardingScreen: FC<OnboardingScreenProps> = ({ onDone }) => {
         </View>
 
         <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}>
-          <View style={{ marginBottom: scaleHeight(24), alignItems: 'center' }}>
+          <View style={{ marginBottom: scaleHeight(12), alignItems: 'center' }}>
             <Text style={styles.textWelcome}>Chào mừng bạn đến với</Text>
             <Text style={styles.textTitle}>Tra Cứu Phạt Nguội</Text>
           </View>

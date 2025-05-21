@@ -3,8 +3,9 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Colors } from '@src/utils';
 import { Gap, Radius, Size } from '@src/utils/styles/spacing';
 import { TypographyStyle } from '@src/utils/styles/typography';
-import { scaleSize } from '@src/utils/styles/mixins';
+import { scaleSize, scaleWidth } from '@src/utils/styles/mixins';
 import ModalAlert from '../ModalAlert';
+import { CloseIcon } from '@src/utils/icon';
 
 interface MyModalConfirmProps {
   isVisible: boolean;
@@ -27,12 +28,15 @@ const MyModalConfirm: FC<MyModalConfirmProps> = ({
   return (
     <ModalAlert isVisible={isVisible} onBackdropPress={() => setIsVisible(false)}>
       <View style={{ padding: scaleSize(24) }}>
-        <View style={styles.row}>{icon && icon}</View>
+        <View style={styles.row}>
+          {icon && icon}
+          <CloseIcon />
+        </View>
         <Text style={styles.textLogOut}>{title}</Text>
         <Text style={styles.textContent}>{content}</Text>
         <View style={styles.containerBtn}>
           <TouchableOpacity style={styles.btnCancel} onPress={() => setIsVisible(false)}>
-            <Text style={styles.textCancel}>{'Cancel'}</Text>
+            <Text style={styles.textCancel}>{'Đóng'}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.btnLogout} onPress={onPressConfirm}>
             <Text style={styles.textLogout}>{confirmText}</Text>
@@ -46,19 +50,19 @@ const MyModalConfirm: FC<MyModalConfirmProps> = ({
 const styles = StyleSheet.create({
   textLogOut: {
     color: Colors.Neutral_900,
-    textAlign: 'center',
     ...TypographyStyle.HEADING_H4,
   },
   textContent: {
     color: Colors.Neutral_500,
-    textAlign: 'center',
     ...TypographyStyle.BODY_REGULAR_NORMAL_REGULAR,
   },
   btnCancel: {
     flex: 1,
     height: Size._4XLARGE,
     borderRadius: Radius._XLARGE,
-    backgroundColor: Colors.Neutral_100,
+    backgroundColor: Colors.Neutral_0,
+    borderWidth: scaleWidth(1),
+    borderColor: Colors.Neutral_200,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -66,7 +70,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: Size._4XLARGE,
     borderRadius: Radius._XLARGE,
-    backgroundColor: Colors.Primary_500,
+    backgroundColor: Colors.Red_600,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -75,7 +79,7 @@ const styles = StyleSheet.create({
     ...TypographyStyle.BODY_MEDIUM_TIGHT_REGULAR,
   },
   textLogout: {
-    color: Colors.Neutral_0,
+    color: Colors.Neutral_100,
     ...TypographyStyle.BODY_MEDIUM_TIGHT_REGULAR,
   },
   containerBtn: {
@@ -85,7 +89,8 @@ const styles = StyleSheet.create({
     marginTop: Size._SMALL,
   },
   row: {
-    justifyContent: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: scaleSize(8),
   },

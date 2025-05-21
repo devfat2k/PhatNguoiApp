@@ -6,18 +6,26 @@ interface IParams {
   callback: () => void;
 }
 
-const useBackHandler = ({ enabled, callback }: IParams) => {
+const useBackHandler = ({ enabled = true, callback }: IParams) => {
   useEffect(() => {
     const backHandler = () => {
       callback();
       return true;
     };
+
+    let subscription: ReturnType<typeof BackHandler.addEventListener> | null = null;
+
     if (enabled) {
-      BackHandler.addEventListener('hardwareBackPress', backHandler);
-    } else {
-      BackHandler.removeEventListener('hardwareBackPress', backHandler);
+      // Lưu trữ giá trị trả về của addEventListener để sử dụng cho việc cleanup
+      subscription = BackHandler.addEventListener('hardwareBackPress', backHandler);
     }
-    return () => BackHandler.removeEventListener('hardwareBackPress', backHandler);
+
+    return () => {
+      // Cleanup sử dụng phương thức remove() từ đối tượng subscription
+      if (subscription) {
+        subscription.remove();
+      }
+    };
   }, [enabled, callback]);
 };
 

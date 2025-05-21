@@ -1,10 +1,12 @@
-import { CheckedIcon } from '@src/utils/icon';
-import { scaleHeight, scaleWidth } from '@src/utils/styles/mixins';
 import React, { FC } from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
-import { styles } from './styles';
+import { CheckedIcon } from '@src/utils/icon';
+import { scaleHeight, scaleWidth } from '@src/utils/styles/mixins';
 import { MyTextInput } from '@src/components';
 import { OptionVehicle } from '../../constants';
+import { navigate } from '@src/navigation/RootNavigation';
+import { styles } from './styles';
+// import { GlobalContext } from '@src/context';
 
 interface VehicleLookUpProps {
   onPress: (id: string) => void;
@@ -12,6 +14,7 @@ interface VehicleLookUpProps {
 }
 
 const VehicleLookUp: FC<VehicleLookUpProps> = ({ onPress, idVehicleSelected }) => {
+  // const { handleLoading } = useContext(GlobalContext);
   return (
     <>
       <View style={{ paddingTop: scaleHeight(24) }}>
@@ -39,7 +42,12 @@ const VehicleLookUp: FC<VehicleLookUpProps> = ({ onPress, idVehicleSelected }) =
       </View>
       <View style={{ paddingTop: scaleHeight(24) }}>
         <MyTextInput label="" placeholder="Nhập biển số xe của bạn" />
-        <TouchableOpacity style={styles.btnSearch} onPress={() => {}}>
+        <TouchableOpacity
+          style={styles.btnSearch}
+          onPress={() => {
+            navigate('SearchResultsScreen');
+          }}
+        >
           <Text style={styles.textSearch}>Tra cứu</Text>
         </TouchableOpacity>
       </View>

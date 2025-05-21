@@ -4,6 +4,7 @@ import { goBack as GoBack } from '../../navigation/RootNavigation';
 import { BackIcon } from '@utils/icon';
 import { scaleWidth } from '@utils/styles/mixins';
 import styles from './style';
+import { Colors } from '@src/utils';
 
 interface MyHeaderProps {
   title?: string;
@@ -15,6 +16,7 @@ interface MyHeaderProps {
   containerHeaderStyle?: ViewStyle;
   icon?: any;
   premium?: boolean;
+  titleColor?: string;
 }
 
 const MyHeader: FC<MyHeaderProps> = ({
@@ -24,6 +26,7 @@ const MyHeader: FC<MyHeaderProps> = ({
   goBack = false,
   containerHeaderStyle,
   icon,
+  titleColor,
 }) => {
   return (
     <View style={[styles.container, containerHeaderStyle]}>
@@ -49,6 +52,7 @@ const MyHeader: FC<MyHeaderProps> = ({
             style={[
               styles.title,
               {
+                color: titleColor ? titleColor : Colors.Primary_500,
                 marginLeft: goBack ? scaleWidth(8) : 0,
               },
             ]}

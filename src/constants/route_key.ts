@@ -16,6 +16,7 @@ export const settingsTabRoute = {
 //main
 export const mainRoute = {
   homeScreen: 'HomeScreen',
+  searchResultsScreen: 'SearchResultsScreen',
 };
 
 //auth

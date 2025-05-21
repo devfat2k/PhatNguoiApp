@@ -35,6 +35,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: Padding._XLARGE,
     justifyContent: 'center',
     flexDirection: 'row',
+    marginVertical: scaleHeight(24),
   },
   text1: {
     color: Colors.Neutral_900,

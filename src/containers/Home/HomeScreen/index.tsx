@@ -5,7 +5,7 @@ import { mainStackParamList } from '../../../navigation/type';
 import { MyHeader, MyWrapper } from '@components';
 import { PremiumIcon } from '@src/utils/icon';
 import { TopTabOptions } from './constants';
-import { VehicleLookUp } from './components';
+import { LookupHistory, VehicleLookUp } from './components';
 import { styles } from './styles';
 
 interface HomeScreenProps extends NativeStackScreenProps<mainStackParamList, 'HomeScreen'> {}
@@ -39,7 +39,11 @@ const HomeScreen: FC<HomeScreenProps> = () => {
             );
           })}
         </View>
-        <VehicleLookUp onPress={id => setVehicleSelected(id)} idVehicleSelected={vehicleSelected} />
+        {tabSelected === '1' ? (
+          <VehicleLookUp onPress={id => setVehicleSelected(id)} idVehicleSelected={vehicleSelected} />
+        ) : (
+          <LookupHistory />
+        )}
       </View>
     </MyWrapper>
   );
