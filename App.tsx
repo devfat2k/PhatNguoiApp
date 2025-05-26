@@ -112,11 +112,10 @@ const App = () => {
           <PaperProvider>
             <GlobalContextProvider>
               <ToastProvider>
-                {/* {visibleBootSplash ? <AnimatedBootSplash onAnimationEnd={handleBootSplashEnd} /> : null}
+                {visibleBootSplash ? <AnimatedBootSplash onAnimationEnd={handleBootSplashEnd} /> : null}
                 <Animated.View style={[styles.content, { transform: [{ translateX: slidePosition }] }]}>
                   {renderContent()}
-                </Animated.View> */}
-                <RootNavigator />
+                </Animated.View>
                 <Loading />
                 <ToastMessage />
               </ToastProvider>

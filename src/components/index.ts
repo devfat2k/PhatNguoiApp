@@ -6,6 +6,7 @@ import MyHeader from './MyHeader';
 import MyImage from './MyImage';
 import MyLoading from './MyLoading';
 import MyModalWrapContent from './MyModalWrapContent';
+import MyTabView from './MyTabsView';
 import MyTextInput from './MyTextInput';
 import MyWrapper from './MyWrapper';
 import ToastContainer from './Toast/ToastContainer';
@@ -22,4 +23,5 @@ export {
   MyModalWrapContent,
   MyDivider,
   ToastContainer,
+  MyTabView,
 };

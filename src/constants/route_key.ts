@@ -18,6 +18,11 @@ export const mainRoute = {
   homeScreen: 'HomeScreen',
   searchResultsScreen: 'SearchResultsScreen',
   privacyScreen: 'PrivacyScreen',
+  vehicleDetailScreen: 'VehicleDetailScreen',
+  addVehicleScreen: 'AddVehicleScreen',
+  editVehicleScreen: 'EditVehicleScreen',
+  premiumScreen: 'PremiumScreen',
+  configNotificationScreen: 'ConfigNotificationScreen',
 };
 
 //auth

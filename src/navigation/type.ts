@@ -6,4 +6,9 @@ export type mainStackParamList = {
   SettingScreen: undefined;
   SearchResultsScreen: undefined;
   PrivacyScreen: undefined;
+  VehicleDetailScreen: undefined;
+  AddVehicleScreen: undefined;
+  EditVehicleScreen: undefined;
+  PremiumScreen: undefined;
+  ConfigNotificationScreen: undefined;
 };

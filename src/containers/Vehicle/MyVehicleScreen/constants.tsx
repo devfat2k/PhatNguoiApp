@@ -1,34 +1,3 @@
-import { HondaEVIcon, HondaIcon, OtoIcon } from '@src/utils/icon';
-
-export const TopTabOptions = [
-  {
-    id: '1',
-    title: 'Tra cứu biển số ',
-  },
-  {
-    id: '2',
-    title: 'Lịch sử tra cứu',
-  },
-];
-
-export const OptionVehicle = [
-  {
-    id: '1',
-    label: 'Xe ô tô',
-    icon: <OtoIcon />,
-  },
-  {
-    id: '2',
-    label: 'Xe máy',
-    icon: <HondaIcon />,
-  },
-  {
-    id: '3',
-    label: 'Xe điện',
-    icon: <HondaEVIcon />,
-  },
-];
-
 export type HistoryItem = {
   id: string;
   licensePlate: string; // Biển số xe
@@ -85,18 +54,5 @@ export const DataMockHistory: HistoryItem[] = [
     licensePlate: '36C-987.65',
     violationCount: 3,
     lookupTime: '18/04/2025 16:45',
-  },
-];
-
-export const SortOptions = [
-  {
-    id: '1',
-    label: 'Gần nhất',
-    type: 'ASC',
-  },
-  {
-    id: '2',
-    label: 'Lâu nhất',
-    type: 'DESC',
   },
 ];

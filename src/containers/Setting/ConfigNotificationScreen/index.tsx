@@ -3,11 +3,12 @@ import { View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { mainStackParamList } from '../../../navigation/type';
 import { MyHeader, MyWrapper } from '@components';
-import { styles } from './styles';
 import { Colors } from '@src/utils';
+import { styles } from './styles';
 
-interface PremiumScreenProps extends NativeStackScreenProps<mainStackParamList, 'PremiumScreen'> {}
-const PremiumScreen: FC<PremiumScreenProps> = () => {
+interface ConfigNotificationScreenProps
+  extends NativeStackScreenProps<mainStackParamList, 'ConfigNotificationScreen'> {}
+const ConfigNotificationScreen: FC<ConfigNotificationScreenProps> = () => {
   return (
     <MyWrapper isSafe style={{ backgroundColor: Colors.Primary_500 }}>
       <MyHeader title="Nâng cấp Premium" />
@@ -16,4 +17,4 @@ const PremiumScreen: FC<PremiumScreenProps> = () => {
   );
 };
 
-export default PremiumScreen;
+export default ConfigNotificationScreen;

@@ -60,4 +60,16 @@ export const mockDataViolation: Violation[] = [
     handlingUnit: 'Phòng CSGT - Công an TP Hà Nội',
     evidence: 'Xem hình ảnh/video Vi phạm',
   },
+  {
+    name: 'Vi phạm 4',
+    date: '03/01/2025',
+    location: 'Ngã tư Hoàng Cầu - Thái Hà',
+    crime: 'Không đội mũ bảo hiểm',
+    status: 'Chưa nộp phạt',
+    decisionNumber: '126/QD-XPCPHC',
+    fine: 500000,
+    enforcementUnit: 'Phòng CSGT - Công an TP Hà Nội',
+    handlingUnit: 'Phòng CSGT - Công an TP Hà Nội',
+    evidence: 'Xem hình ảnh/video Vi phạm',
+  },
 ];
