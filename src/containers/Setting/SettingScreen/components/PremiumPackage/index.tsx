@@ -12,8 +12,10 @@ interface PremiumPackageProps {
 const PremiumPackage: FC<PremiumPackageProps> = ({ onPress }) => {
   return (
     <View style={styles.container}>
-      <PremiumIcon />
-      <View>
+      <View style={{}}>
+        <PremiumIcon />
+      </View>
+      <View style={{ width: '90%' }}>
         <Text style={styles.text1}>Gói Premium của bạn sắp hết hạn</Text>
         <Text style={styles.text2}>Gia hạn để tiếp tục dùng đầy đủ tính năng, không gián đoạn!</Text>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
