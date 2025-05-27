@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import RootNavigator from './src/navigation';
 import { Provider } from 'react-redux';
-// import { PersistGate } from 'redux-persist/integration/react';
-import { store } from './src/redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor, store } from './src/redux/store';
 import { PaperProvider } from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';

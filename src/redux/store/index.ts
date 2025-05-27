@@ -1,17 +1,15 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistStore } from 'redux-persist';
-// import createSagaMiddleware from 'redux-saga'; // Use ES module import
 import rootSaga from '../saga';
-import logger from 'redux-logger'; // Use redux-logger instead of redux-logger for consistency
+import logger from 'redux-logger';
 import loadingSlice from '../slice/loadingSlice';
+import licensesSlice from '../slice/licenses';
 
-// Combine reducers
 export const rootReducer = combineReducers({
   loadingSlice,
+  licensesSlice,
 });
 
-// Create saga middleware instance
-// const sagaMiddleware = createSagaMiddleware();
 const createSagaMiddleware = require('redux-saga');
 const sagaMiddleware = createSagaMiddleware.default();
 // Configure store
@@ -22,13 +20,7 @@ export const store = configureStore({
       serializableCheck: false,
     }).concat(sagaMiddleware, logger),
 });
-
-// Run the root saga
-sagaMiddleware.run(rootSaga);
-
-// Persist store
-export const persistor = persistStore(store);
-
-// Export types
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+export const persistor = persistStore(store);
+sagaMiddleware.run(rootSaga);
