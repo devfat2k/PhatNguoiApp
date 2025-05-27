@@ -47,7 +47,10 @@ const MyModalConfirm: FC<MyModalConfirmProps> = ({
                 backgroundColor: confirmButtonColor ? confirmButtonColor : Colors.Red_600,
               },
             ]}
-            onPress={onPressConfirm}
+            onPress={() => {
+              setIsVisible(false);
+              onPressConfirm();
+            }}
           >
             <Text style={styles.textLogout}>{confirmText}</Text>
           </TouchableOpacity>

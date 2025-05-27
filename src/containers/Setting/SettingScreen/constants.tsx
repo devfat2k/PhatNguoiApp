@@ -11,6 +11,7 @@ export const OptionsSetting = [
     id: '2',
     label: 'Thiết lập thông báo vi phạm',
     icon: <NotiIcon />,
+    onPress: () => navigate('ConfigNotificationScreen'),
   },
   {
     id: '3',

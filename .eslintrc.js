@@ -1,4 +1,56 @@
+// module.exports = {
+//   root: true,
+//   extends: '@react-native',
+// };
+
 module.exports = {
   root: true,
-  extends: '@react-native',
+  extends: [
+    '@react-native-community',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
+    'plugin:react-hooks/recommended',
+  ],
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint', 'react', 'import', 'react-hooks'],
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      rules: {
+        'no-shadow': 'off',
+        '@typescript-eslint/no-shadow': 'off',
+        '@typescript-eslint/no-unused-vars': 'off',
+        'react-native/no-inline-styles': 'off',
+        semi: 'off',
+        quotes: 'off',
+        'no-unused-vars': 'warn',
+        'react-native/no-unused-styles': 'warn',
+        'import/no-named-as-default': 'off',
+        'import/namespace': 'off',
+        'import/no-unresolved': 'off',
+        'import/order': [
+          'error',
+          {
+            groups: ['builtin', 'external', 'internal'],
+            pathGroups: [
+              {
+                pattern: 'react',
+                group: 'external',
+                position: 'before',
+              },
+            ],
+            pathGroupsExcludedImportTypes: ['react'],
+            'newlines-between': 'always',
+            alphabetize: {
+              order: 'asc',
+              caseInsensitive: true,
+            },
+          },
+        ],
+        'react-hooks/rules-of-hooks': 'error',
+        'react-hooks/exhaustive-deps': 'warn',
+      },
+    },
+  ],
 };

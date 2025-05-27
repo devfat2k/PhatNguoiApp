@@ -11,7 +11,6 @@ import { styles } from './styles';
 interface HomeScreenProps extends NativeStackScreenProps<mainStackParamList, 'HomeScreen'> {}
 const HomeScreen: FC<HomeScreenProps> = () => {
   const [tabSelected, setTabSelected] = useState<string>('1');
-  const [vehicleSelected, setVehicleSelected] = useState<string>('1');
   return (
     <MyWrapper isSafe>
       <MyHeader
@@ -39,11 +38,7 @@ const HomeScreen: FC<HomeScreenProps> = () => {
             );
           })}
         </View>
-        {tabSelected === '1' ? (
-          <VehicleLookUp onPress={id => setVehicleSelected(id)} idVehicleSelected={vehicleSelected} />
-        ) : (
-          <LookupHistory />
-        )}
+        {tabSelected === '1' ? <VehicleLookUp /> : <LookupHistory />}
       </View>
     </MyWrapper>
   );

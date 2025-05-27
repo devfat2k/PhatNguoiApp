@@ -1,5 +1,5 @@
 import React, { FC, useContext, useState } from 'react';
-import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { mainStackParamList } from '../../../navigation/type';
 import { MyDivider, MyEmptyData, MyHeader, MyImage, MyModalConfirm, MyWrapper } from '@components';
@@ -57,14 +57,8 @@ const VehicleDetailScreen: FC<VehicleDetailScreenProps> = () => {
           </View>
         }
       />
-      <View style={styles.container}>
-        <View
-          style={{
-            backgroundColor: Colors.Neutral_100,
-            paddingHorizontal: Padding._2XLARGE,
-            paddingBottom: Padding._XLARGE,
-          }}
-        >
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
+        <View style={styles.containerInfo}>
           <View style={{ alignItems: 'center' }}>
             <View style={styles.containerCar}>
               <OtoIcon />
@@ -111,6 +105,7 @@ const VehicleDetailScreen: FC<VehicleDetailScreenProps> = () => {
           data={mockDataViolation || []}
           keyExtractor={(_, index) => index.toString()}
           showsVerticalScrollIndicator={false}
+          scrollEnabled={false}
           renderItem={({ item, index }) => {
             const isExpanded = expandedItem === index;
             return (
@@ -235,7 +230,7 @@ const VehicleDetailScreen: FC<VehicleDetailScreenProps> = () => {
             <Text style={styles.textBtn}>Chia sẻ</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
       <MyModalConfirm
         isVisible={isShowModalDelete}
         setIsVisible={setIsShowModalDelete}

@@ -16,4 +16,9 @@ export const styles = StyleSheet.create({
     backgroundColor: Colors.Red_50,
     marginLeft: scaleWidth(12),
   },
+  btnAdd: {
+    position: 'absolute',
+    bottom: scaleHeight(16),
+    right: scaleWidth(16),
+  },
 });

@@ -175,4 +175,9 @@ export const styles = StyleSheet.create({
 
     ...TypographyStyle.BODY_REGULAR_NORMAL_REGULAR,
   },
+  containerInfo: {
+    backgroundColor: Colors.Neutral_100,
+    paddingHorizontal: Padding._2XLARGE,
+    paddingBottom: Padding._XLARGE,
+  },
 });

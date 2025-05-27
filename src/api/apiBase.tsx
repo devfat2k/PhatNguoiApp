@@ -79,24 +79,6 @@ apiInstance.interceptors.request.use(
   error => Promise.reject(error),
 );
 
-// apiInstance.interceptors.response.use(
-//   response => {
-//     return response;
-//   },
-//   async error => {
-//     const originalRequest = error.config;
-//     if (error.response?.status === 401 && !originalRequest._retry) {
-//       originalRequest._retry = true;
-//       const newToken = await refreshAccessToken();
-//       if (newToken) {
-//         apiInstance.defaults.headers.common.Authorization = `Bearer ${newToken}`;
-//         originalRequest.headers.Authorization = `Bearer ${newToken}`;
-//         return apiInstance(originalRequest);
-//       }
-//     }
-//     return Promise.reject(error);
-//   },
-// );
 apiInstance.interceptors.response.use(
   response => {
     return response;

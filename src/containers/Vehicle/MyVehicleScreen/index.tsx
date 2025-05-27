@@ -5,10 +5,10 @@ import { mainStackParamList } from '../../../navigation/type';
 import { MyHeader, MyTabView, MyWrapper } from '@components';
 import { styles } from './styles';
 import { AddVehicleIcon, HondaIcon, PremiumIcon } from '@src/utils/icon';
-import { scaleHeight, scaleWidth } from '@src/utils/styles/mixins';
 import { FourDotIcon, HondaEVIcon, OtoIcon } from '@src/utils/icon';
 import { VehicleList } from './components';
 import { DataMockHistory } from './constants';
+import { navigate } from '@src/navigation/RootNavigation';
 interface MyVehicleScreenProps extends NativeStackScreenProps<mainStackParamList, 'MyVehicleScreen'> {}
 const MyVehicleScreen: FC<MyVehicleScreenProps> = () => {
   return (
@@ -36,13 +36,7 @@ const MyVehicleScreen: FC<MyVehicleScreenProps> = () => {
             ev: <VehicleList data={DataMockHistory} />,
           }}
         />
-        <TouchableOpacity
-          style={{
-            position: 'absolute',
-            bottom: scaleHeight(16),
-            right: scaleWidth(16),
-          }}
-        >
+        <TouchableOpacity style={styles.btnAdd} onPress={() => navigate('AddVehicleScreen')}>
           <AddVehicleIcon />
         </TouchableOpacity>
       </View>

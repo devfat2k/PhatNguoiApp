@@ -1,5 +1,6 @@
 import Config from 'react-native-config';
 
+// export const base_url = 'https://chefly-api.onrender.com'
 export const SOCIAL_AUTHEN_API = Config.HOST + '/api/auth/social/login';
 export const SOCIAL_AUTHEN_API_FB = Config.HOST + '/api/auth/facebook-ios/login';
 export const USER_PROFILE = Config.HOST + '/api/users/profile';
@@ -7,20 +8,4 @@ export const REFRESH_AUTH = Config.HOST + '/api/auth/refresh';
 export const SUBSCRIBE_PURCHASE = Config.HOST + '/api/iap/subscribe';
 export const GET_SUBSCRIBE_PURCHASE = Config.HOST + '/api/iap/start-trial';
 export const GET_TRIAL_PURCHASE = Config.HOST + '/api/iap/subscription';
-export const FOLDER = Config.HOST + '/api/folders';
-export const TAG = Config.HOST + '/api/tags';
-export const NOTE = Config.HOST + '/api/notes';
-export const DIARY = Config.HOST + '/api/diaries';
-export const HOME = Config.HOST + '/api/home';
-export const STATS_DATE = Config.HOST + '/api/stats/by-date/todo';
-export const STATS_RANGE = Config.HOST + '/api/stats/by-range/todo';
-export const STATS_DATE_FOLDER_NOTE = Config.HOST + '/api/stats/by-date/folder-note';
-export const STATS_DATE_FOLDER_DIARY = Config.HOST + '/api/stats/by-date/folder-diary';
-export const STATS_RANGE_FOLDER_NOTE = Config.HOST + '/api/stats/by-range/folder-note';
-export const STATS_RANGE_FOLDER_DIARY = Config.HOST + '/api/stats/by-range/folder-diary';
-export const PUSH_NOTIFICATIONS = Config.HOST + '/api/fcm-notifications/fcm-token';
-export const NOTIFICATION_CONFIG = Config.HOST + '/api/notification-config';
-export const TRASHES = Config.HOST + '/api/trashes';
-export const UPLOAD_FILE = Config.HOST + '/api/upload/files';
-export const UPDATE_STATUS_NOTE = Config.HOST + '/api/notes/update-status';
-export const OTP = Config.HOST + '/api/otp';
+export const LICENSES = Config.HOST + '/api/licenses';

@@ -3,6 +3,8 @@ import { Text, TextInput, TextInputProps, TouchableOpacity, View, ViewStyle } fr
 import { Colors } from '@utils';
 import { styles } from './styles';
 import { WarningIcon } from '@src/utils/icon';
+import { TypographyStyle } from '@src/utils/styles/typography';
+import { Gap } from '@src/utils/styles/spacing';
 
 interface MyTextInputProps extends TextInputProps {
   editable?: boolean;
@@ -12,6 +14,7 @@ interface MyTextInputProps extends TextInputProps {
   error?: boolean;
   errorText?: string;
   actionInput?: boolean;
+  isRequired?: boolean;
   onPressAction?: () => void;
 }
 const MyTextInput: FC<MyTextInputProps> = ({
@@ -23,20 +26,32 @@ const MyTextInput: FC<MyTextInputProps> = ({
   errorText,
   actionInput,
   onPressAction,
+  isRequired = false,
   ...args
 }) => {
-  const textInputRef = useRef<TextInput>(null); // Tạo ref cho TextInput
-
+  const textInputRef = useRef<TextInput>(null);
   // Hàm để ẩn bàn phím
   // const dismissKeyboard = () => {
   //   Keyboard.dismiss();
   //   if (textInputRef.current) {
-  //     textInputRef.current?.blur(); // Mất focus khỏi TextInput
+  //     textInputRef.current?.blur();
   //   }
   // };
   return (
     <View style={[styles.container, containerStyle]}>
-      <Text style={styles.textTitle}>{label && label}</Text>
+      <View style={{ flexDirection: 'row', gap: Gap._XSMALL }}>
+        <Text style={styles.textTitle}>{label && label}</Text>
+        {isRequired && (
+          <Text
+            style={{
+              color: '#DC1F18',
+              ...TypographyStyle.BODY_REGULAR_TIGHT_REGULAR,
+            }}
+          >
+            *
+          </Text>
+        )}
+      </View>
       <View
         style={[
           styles.containerInput,

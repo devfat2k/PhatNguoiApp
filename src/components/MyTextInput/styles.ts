@@ -1,13 +1,14 @@
 import { StyleSheet } from 'react-native';
 import { Colors } from '@src/utils';
-import { scaleFont, scaleSize } from '@src/utils/styles/mixins';
+import { scaleFont, scaleHeight } from '@src/utils/styles/mixins';
 import { Size, Radius, Padding, Gap } from '@src/utils/styles/spacing';
 import { FONT_FAMILY_MEDIUM, FONT_WEIGHT_MEDIUM, TypographyStyle } from '@src/utils/styles/typography';
 
 export const styles = StyleSheet.create({
   container: {
     width: '100%',
-    marginBottom: scaleSize(16),
+    gap: Gap._MEDIUM,
+    marginBottom: scaleHeight(16),
   },
   containerInput: {
     width: '100%',

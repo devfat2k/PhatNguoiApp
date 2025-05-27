@@ -9,6 +9,7 @@ import { scaleHeight } from '@src/utils/styles/mixins';
 import { OptionsSetting } from './constants';
 import { ArrowRightIcon, PremiumIcon, TrashIcon } from '@src/utils/icon';
 import { Colors } from '@src/utils';
+import { navigate } from '@src/navigation/RootNavigation';
 interface SettingScreenProps extends NativeStackScreenProps<mainStackParamList, 'NotificationScreen'> {}
 const SettingScreen: FC<SettingScreenProps> = () => {
   const [isShowModalLogOut, setIsShowModalLogOut] = useState<boolean>(false);
@@ -26,7 +27,7 @@ const SettingScreen: FC<SettingScreenProps> = () => {
                 <TouchableOpacity
                   style={styles.containerOptions}
                   onPress={() => {
-                    item.onPress;
+                    item.onPress && item.onPress();
                   }}
                 >
                   <View style={styles.center}>
@@ -58,7 +59,9 @@ const SettingScreen: FC<SettingScreenProps> = () => {
         content="Bạn đang sử dụng phiên bản miễn phí với một số tính năng bị giới hạn. Để đảm bảo trải nghiệm đầy đủ và tiện ích tối đa, hãy nâng cấp lên gói Premium."
         icon={<PremiumIcon />}
         confirmText="Nâng cấp"
-        onPressConfirm={() => {}}
+        onPressConfirm={() => {
+          navigate('PremiumScreen');
+        }}
         isVisible={isShowModalPremium}
         setIsVisible={setIsShowModalPremium}
         confirmButtonColor={Colors.Primary_500}

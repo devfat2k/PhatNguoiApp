@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { JSX } from 'react';
 import { ColorValue, Text, TouchableOpacity, View } from 'react-native';
 import Toast from 'react-native-toast-message';
 import { Colors, Mixins } from '@utils';
 import { default as AntDesign } from 'react-native-vector-icons/AntDesign';
-import { default as Feather } from 'react-native-vector-icons/Feather';
-import { SuccessIcon } from '@src/utils/icon';
+import { SuccessIcon, WarningIcon } from '@src/utils/icon';
 
 interface BaseToastProps {
   bgColor: ColorValue;
   textColor: ColorValue;
-  iconName: string;
+  iconName: JSX.Element;
   iconColor: string;
   text: string;
   hide: any;
@@ -38,16 +37,13 @@ const MyBaseToast = (props: BaseToastProps) => {
             width: 20,
             height: 20,
             borderRadius: 10,
-            // backgroundColor: iconColor,
             justifyContent: 'center',
             alignItems: 'center',
           }}
         >
-          {/* <FontAwesome5 name={iconName} color={bgColor} size={10} /> */}
-          <SuccessIcon />
+          {iconName}
         </View>
       )}
-      {isCheckNetwork && <Feather name={iconName} color={Colors.NEUTRAL_PRIMARY} size={18} />}
       <View
         style={{
           flex: 1,
@@ -80,7 +76,7 @@ const toastConfig = {
           hide={props.hide}
           bgColor={Colors.Neutral_900}
           iconColor={'#12B76A'}
-          iconName="check"
+          iconName={<SuccessIcon />}
           text={props.props.text}
           textColor={Colors.Neutral_0}
           position="bottom"
@@ -96,7 +92,8 @@ const toastConfig = {
           {...props}
           hide={props.hide}
           bgColor={Colors.SECONDARY_NEGATIVE}
-          iconName="times"
+          iconName={<WarningIcon />}
+          iconColor="red"
           text={props.props.text}
           textColor={Colors.CONTENT_NEGATIVE}
           position="bottom"
@@ -112,7 +109,7 @@ const toastConfig = {
           {...props}
           hide={props.hide}
           bgColor={Colors.SECONDARY_WARNING}
-          iconName="exclamation"
+          iconName={<WarningIcon />}
           text={props.props.text}
           textColor={Colors.YELLOW_VIVID_400}
           position="bottom"
