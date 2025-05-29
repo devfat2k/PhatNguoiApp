@@ -55,7 +55,6 @@ async function refreshAccessToken(): Promise<string | null> {
     ]);
     return newToken;
   } catch (error) {
-    console.log('Error refreshing token: =>>>>>>', error);
     await StorageService.multiSet([
       { key: StorageKey.TOKEN, value: null },
       { key: StorageKey.REFRESH_TOKEN, value: null },
@@ -70,7 +69,6 @@ async function refreshAccessToken(): Promise<string | null> {
 apiInstance.interceptors.request.use(
   async config => {
     const token = await getToken();
-    console.log('Token: =>>>>>>', token);
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
     }

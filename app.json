@@ -1,4 +1,7 @@
 {
   "name": "PhatNguoiZApp",
-  "displayName": "PhatNguoiZApp"
+  "displayName": "PhatNguoiZApp",
+  "react-native-google-mobile-ads": {
+      "android_app_id": "ca-app-pub-1021327634058826~1510078081"
+    }
 }

@@ -1,8 +1,6 @@
 import React from 'react';
 import { CardStyleInterpolators, StackNavigationOptions, createStackNavigator } from '@react-navigation/stack';
-import { AppTab } from '../TabNavigator';
-import screenList from '../../containers';
-import { mainRoute } from '../../constants/route_key';
+import AppDrawer from '../Drawer';
 
 const Stack = createStackNavigator();
 const screenOptions: StackNavigationOptions = {
@@ -12,27 +10,14 @@ const screenOptions: StackNavigationOptions = {
 
 const MainNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName={'AppTabScreen'} screenOptions={screenOptions}>
+    <Stack.Navigator initialRouteName={'AppDrawer'} screenOptions={screenOptions}>
       <Stack.Screen
-        name="AppTabScreen"
-        component={AppTab}
+        name="AppDrawer"
+        component={AppDrawer}
         options={{
           headerShown: false,
         }}
       />
-
-      {Object.values(mainRoute).map(item => {
-        return (
-          <Stack.Screen
-            key={item}
-            name={item}
-            component={screenList[item as keyof typeof screenList]}
-            options={{
-              headerShown: false,
-            }}
-          />
-        );
-      })}
     </Stack.Navigator>
   );
 };

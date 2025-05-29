@@ -1,4 +1,4 @@
-import { HondaEVIcon, HondaIcon, OtoIcon } from '@src/utils/icon';
+import { HondaIcon, OtoIcon } from '@src/utils/icon';
 
 export const TopTabOptions = [
   {
@@ -22,11 +22,11 @@ export const OptionVehicle = [
     label: 'Xe máy',
     icon: <HondaIcon />,
   },
-  {
-    id: '3',
-    label: 'Xe điện',
-    icon: <HondaEVIcon />,
-  },
+  // {
+  //   id: '3',
+  //   label: 'Xe điện',
+  //   icon: <HondaEVIcon />,
+  // },
 ];
 
 export type HistoryItem = {

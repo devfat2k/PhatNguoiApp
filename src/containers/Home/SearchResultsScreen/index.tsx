@@ -2,38 +2,19 @@ import React, { FC, useState } from 'react';
 import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { mainStackParamList } from '../../../navigation/type';
-import { MyDivider, MyEmptyData, MyHeader, MyModalWrapContent, MyWrapper } from '@components';
+import { MyDivider, MyEmptyData, MyHeader, MyWrapper } from '@components';
 import { Colors } from '@src/utils';
-import {
-  ArrowDownIcon,
-  ArrowTopIcon,
-  CalendarIcon,
-  CarIcon,
-  CloseIcon,
-  DownloadIcon,
-  EyeIcon,
-  MarkerIcon,
-  ShareIcon,
-  TickedIcon,
-  UnTickIcon,
-  WarningPrimaryIcon,
-} from '@src/utils/icon';
+import { ArrowDownIcon, ArrowTopIcon, CalendarIcon, CarIcon, WarningPrimaryIcon } from '@src/utils/icon';
 import { GlobalCenter } from '@src/utils/styles/typography';
 import { Gap } from '@src/utils/styles/spacing';
-import { scaleHeight, scaleWidth } from '@src/utils/styles/mixins';
-import { SortOptions } from '../HomeScreen/constants';
-import { mockDataViolation } from './constants';
-import { formatStringToMoney } from '@src/utils/helpers/string';
+import { scaleHeight } from '@src/utils/styles/mixins';
 import { styles } from './styles';
-import { useAppSelector } from '@src/redux/store/customReduxHook';
-import { formatLicensePlate } from '@src/utils/helpers/string';
 import dayjs from 'dayjs';
+import { formatLicensePlate } from '@src/utils/helpers/string';
 
 interface SearchResultsScreenProps extends NativeStackScreenProps<mainStackParamList, 'SearchResultsScreen'> {}
-const SearchResultsScreen: FC<SearchResultsScreenProps> = () => {
-  const { dataLicenses } = useAppSelector(state => state.licensesSlice);
-  const [isShowModalSortBy, setIsShowModalSortBy] = useState<boolean>(false);
-  const [sortBy, setSortBy] = useState<string>('ASC');
+const SearchResultsScreen: FC<SearchResultsScreenProps> = ({ route }) => {
+  const { data } = route.params;
   const [expandedItem, setExpandedItem] = useState<number | null>(null);
   const toggleExpand = (index: number) => {
     setExpandedItem(expandedItem === index ? null : index);
@@ -46,17 +27,11 @@ const SearchResultsScreen: FC<SearchResultsScreenProps> = () => {
         <View style={styles.containerItem}>
           <CarIcon style={{ borderRadius: 999 }} />
           <View style={{ justifyContent: 'center' }}>
-            <Text style={styles.textPlate}>{formatLicensePlate(dataLicenses?.licensePlate) || 'xx-xx.xxx'}</Text>
-            <View style={styles.centerLeft}>
-              <MarkerIcon />
-              <Text style={styles.textTimeSearch}>
-                Tỉnh đăng ký: <Text style={styles.textTime}>Hà Nội</Text>
-              </Text>
-            </View>
+            <Text style={styles.textPlate}>{formatLicensePlate(data?.licensePlate) || 'xx-xx.xxx'}</Text>
             <View style={styles.centerLeft}>
               <CalendarIcon />
               <Text style={styles.textTimeSearch}>
-                Thời điểm tra cứu: <Text style={styles.textTime}>21/04/2025 09:00</Text>
+                Thời điểm tra cứu: <Text style={styles.textTime}>{dayjs().format('DD/MM/YYYY HH:MM')}</Text>
               </Text>
             </View>
           </View>
@@ -66,31 +41,18 @@ const SearchResultsScreen: FC<SearchResultsScreenProps> = () => {
             <WarningPrimaryIcon />
             <Text style={styles.textResult}>Kết quả vi phạm</Text>
           </View>
-          <Text style={styles.textFound}>{`Bạn có ${dataLicenses?.violations.length} lỗi vi phạm được tìm thấy`}</Text>
-          <View style={styles.containerDou}>
+          <Text style={styles.textFound}>{`Bạn có ${data?.violations.length} lỗi vi phạm được tìm thấy`}</Text>
+          {/* <View style={styles.containerDou}>
             <View style={styles.containerUnConviction}>
               <Text style={styles.textUnConviction}>{`3 chưa xử phạt`}</Text>
             </View>
             <View style={styles.containerUnConviction}>
               <Text style={styles.textConviction}>{`1 đã xử phạt`}</Text>
             </View>
-          </View>
-        </View>
-        <View style={{ alignItems: 'flex-end', marginVertical: scaleHeight(16) }}>
-          <TouchableOpacity
-            style={styles.containerSort}
-            onPress={() => {
-              setIsShowModalSortBy(true);
-            }}
-          >
-            <Text style={styles.textSort}>
-              Sắp xếp theo: <Text style={styles.textValueSort}>Gần nhất</Text>
-            </Text>
-            <ArrowDownIcon />
-          </TouchableOpacity>
+          </View> */}
         </View>
         <FlatList
-          data={dataLicenses?.violations || []}
+          data={data?.violations || []}
           keyExtractor={(_, index) => index.toString()}
           showsVerticalScrollIndicator={false}
           renderItem={({ item, index }) => {
@@ -114,10 +76,28 @@ const SearchResultsScreen: FC<SearchResultsScreenProps> = () => {
                     <MyDivider height={1} color={Colors.Neutral_0} />
                     <View style={styles.detailRow}>
                       <View style={{ flex: 1 }}>
+                        <Text style={styles.textTitleItem}>Màu biển số:</Text>
+                      </View>
+                      <View style={{ flex: 2 }}>
+                        <Text style={styles.textContentItem}>{item?.plateColor}</Text>
+                      </View>
+                    </View>
+                    <MyDivider height={1} color={Colors.Neutral_0} />
+                    <View style={styles.detailRow}>
+                      <View style={{ flex: 1 }}>
+                        <Text style={styles.textTitleItem}>Loại phương tiện:</Text>
+                      </View>
+                      <View style={{ flex: 2 }}>
+                        <Text style={styles.textContentItem}>{item?.vehicleType}</Text>
+                      </View>
+                    </View>
+                    <MyDivider height={1} color={Colors.Neutral_0} />
+                    <View style={styles.detailRow}>
+                      <View style={{ flex: 1 }}>
                         <Text style={styles.textTitleItem}>Địa điểm:</Text>
                       </View>
                       <View style={{ flex: 2 }}>
-                        <Text style={styles.textContentItem}>{item.violationLocation}</Text>
+                        <Text style={styles.textContentItem}>{item?.violationLocation}</Text>
                       </View>
                     </View>
                     <MyDivider height={1} color={Colors.Neutral_0} />
@@ -126,7 +106,7 @@ const SearchResultsScreen: FC<SearchResultsScreenProps> = () => {
                         <Text style={styles.textTitleItem}>Lỗi:</Text>
                       </View>
                       <View style={{ flex: 2 }}>
-                        <Text style={styles.textContentItem}>{item.violationBehavior}</Text>
+                        <Text style={styles.textContentItem}>{item?.violationBehavior}</Text>
                       </View>
                     </View>
                     <MyDivider height={1} color={Colors.Neutral_0} />
@@ -137,29 +117,12 @@ const SearchResultsScreen: FC<SearchResultsScreenProps> = () => {
                       <View style={{ flex: 2 }}>
                         <View style={styles.statusFee}>
                           <View style={styles.dot} />
-                          <Text style={styles.textConviction}>{item.status}</Text>
+                          <Text style={styles.textConviction}>{item?.status}</Text>
                         </View>
                       </View>
                     </View>
                     <MyDivider height={1} color={Colors.Neutral_0} />
-                    <View style={styles.detailRow}>
-                      <View style={{ flex: 1 }}>
-                        <Text style={styles.textTitleItem}>Số quyết định xử phạt:</Text>
-                      </View>
-                      <View style={{ flex: 2 }}>
-                        <Text style={styles.textContentItem}>{item.violationBehavior}</Text>
-                      </View>
-                    </View>
-                    <MyDivider height={1} color={Colors.Neutral_0} />
-                    {/* <View style={styles.detailRow}>
-                      <View style={{ flex: 1 }}>
-                        <Text style={styles.textTitleItem}>Mức phạt:</Text>
-                      </View>
-                      <View style={{ flex: 2 }}>
-                        <Text style={styles.textContentItem}>{formatStringToMoney(item.fine)}</Text>
-                      </View>
-                    </View>
-                    <MyDivider height={1} color={Colors.Neutral_0} /> */}
+
                     <View style={styles.detailRow}>
                       <View style={{ flex: 1 }}>
                         <Text style={styles.textTitleItem}>Nơi giải quyết:</Text>
@@ -170,27 +133,6 @@ const SearchResultsScreen: FC<SearchResultsScreenProps> = () => {
                         >{`${item?.resolutionPlaces[0]?.name} - ${item?.resolutionPlaces[0]?.address}`}</Text>
                       </View>
                     </View>
-                    {/* <MyDivider height={1} color={Colors.Neutral_0} /> */}
-                    {/* <View style={styles.detailRow}>
-                      <View style={{ flex: 1 }}>
-                        <Text style={styles.textTitleItem}>Hướng dẫn nộp phạt:</Text>
-                      </View>
-                      <View style={{ flex: 2 }}>
-                        <Text style={styles.textContentItem}>{item.handlingUnit}</Text>
-                      </View>
-                    </View> */}
-                    {/* <MyDivider height={1} color={Colors.Neutral_0} /> */}
-                    {/* <View style={[styles.detailRow, { alignItems: 'center' }]}>
-                      <View style={{ flex: 1 }}>
-                        <Text style={styles.textTitleItem}>Xem hình ảnh/video vi phạm</Text>
-                      </View>
-                      <View style={{ flex: 2 }}>
-                        <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', gap: Gap._MEDIUM }}>
-                          <EyeIcon />
-                          <Text style={styles.textSeeVideo}>Xem hình ảnh</Text>
-                        </TouchableOpacity>
-                      </View>
-                    </View> */}
                   </View>
                 )}
               </TouchableOpacity>
@@ -198,53 +140,10 @@ const SearchResultsScreen: FC<SearchResultsScreenProps> = () => {
           }}
           contentContainerStyle={{ paddingTop: scaleHeight(16) }}
           ListEmptyComponent={
-            <MyEmptyData text="Không có phạt nguội nào được ghi nhận. Tiếp tục lái xe an toàn nhé!" />
+            <MyEmptyData text={`Không có phạt nguội nào được ghi nhận.\n Tiếp tục lái xe an toàn nhé!`} />
           }
         />
-        <View style={{ ...GlobalCenter.center, marginVertical: scaleHeight(12), gap: Gap._MEDIUM }}>
-          <TouchableOpacity style={styles.containerBtnDownShare}>
-            <DownloadIcon />
-            <Text style={styles.textBtn}>Tải kết quả</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.containerBtnDownShare}>
-            <ShareIcon />
-            <Text style={styles.textBtn}>Chia sẻ</Text>
-          </TouchableOpacity>
-        </View>
       </View>
-      <MyModalWrapContent
-        isVisible={isShowModalSortBy}
-        onRequestClose={() => setIsShowModalSortBy(false)}
-        onBackdropPress={() => setIsShowModalSortBy(false)}
-      >
-        <MyWrapper isSafe isModal>
-          <View style={{ padding: scaleWidth(16), marginBottom: scaleHeight(24) }}>
-            <View style={{ ...GlobalCenter.centerBetween }}>
-              <Text style={styles.text}>Sắp xếp theo</Text>
-              <TouchableOpacity onPress={() => setIsShowModalSortBy(false)}>
-                <CloseIcon />
-              </TouchableOpacity>
-            </View>
-            {SortOptions.map((item, index) => {
-              const isTick = item.type === sortBy;
-              return (
-                <View key={index}>
-                  <TouchableOpacity
-                    style={styles.btnSort}
-                    onPress={() => {
-                      setSortBy(item.type);
-                    }}
-                  >
-                    <Text style={styles.textSortBy}>{item.label}</Text>
-                    {isTick ? <TickedIcon /> : <UnTickIcon />}
-                  </TouchableOpacity>
-                  {index % 2 === 0 && <MyDivider height={1} />}
-                </View>
-              );
-            })}
-          </View>
-        </MyWrapper>
-      </MyModalWrapContent>
     </MyWrapper>
   );
 };

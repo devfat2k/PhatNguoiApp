@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
   },
   textPlate: {
     color: Colors.Primary_500,
-    ...TypographyStyle.BODY_LARGE_NORMAL_MEDIUM,
+    ...TypographyStyle.BODY_LARGE_NORMAL_BOLD,
   },
   textTimeSearch: {
     color: Colors.Neutral_500,
@@ -56,7 +56,7 @@ export const styles = StyleSheet.create({
   },
   centerLeft: {
     width: '100%',
-    gap: Gap._MEDIUM,
+    gap: Gap._SMALL,
     marginTop: scaleHeight(4),
     ...GlobalCenter.centerLeft,
   },

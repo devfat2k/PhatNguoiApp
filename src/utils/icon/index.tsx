@@ -2108,8 +2108,43 @@ export const TickSquareIconIcon = (props: SvgProps) => (
     />
   </Svg>
 );
-// export const Icon = (props: SvgProps) => ();
-// export const Icon = (props: SvgProps) => ();
+export const BackGrayIcon = (props: SvgProps) => (
+  <Svg width={scaleWidth(24)} height={scaleHeight(25)} viewBox="0 0 24 25" fill="none" {...props}>
+    <G clipPath="url(#clip0_4441_1873)">
+      <Path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M15.3512 5.57838C15.6944 5.93793 15.6812 6.50762 15.3216 6.85083L9.40364 12.4998L15.3216 18.1488C15.6812 18.492 15.6944 19.0617 15.3512 19.4212C15.008 19.7808 14.4383 19.794 14.0788 19.4508L7.47877 13.1508C7.30085 12.981 7.2002 12.7458 7.2002 12.4998C7.2002 12.2539 7.30085 12.0186 7.47877 11.8488L14.0788 5.54879C14.4383 5.20558 15.008 5.21883 15.3512 5.57838Z"
+        fill="#667085"
+      />
+    </G>
+    <Defs>
+      <ClipPath id="clip0_4441_1873">
+        <Rect width={24} height={24} fill="white" transform="translate(0 0.5)" />
+      </ClipPath>
+    </Defs>
+  </Svg>
+);
+export const MenuBarIcon = (props: SvgProps) => (
+  <Svg width={scaleWidth(32)} height={scaleHeight(32)} viewBox="0 0 32 32" fill="none" {...props}>
+    <Path
+      d="M0 8C0 3.58172 3.58172 0 8 0H24C28.4183 0 32 3.58172 32 8V24C32 28.4183 28.4183 32 24 32H8C3.58172 32 0 28.4183 0 24V8Z"
+      fill="#ECFDF3"
+    />
+    <Path
+      d="M5.8 10.6H26.2C27.1943 10.6 28 9.79434 28 8.8C28 7.80566 27.1943 7 26.2 7H5.8C4.80566 7 4 7.80566 4 8.8C4 9.79434 4.80566 10.6 5.8 10.6Z"
+      fill="#12B76A"
+    />
+    <Path
+      d="M26.2 14.2H5.8C4.80566 14.2 4 15.0056 4 16C4 16.9943 4.80566 17.8 5.8 17.8H26.2C27.1943 17.8 28 16.9943 28 16C28 15.0056 27.1943 14.2 26.2 14.2Z"
+      fill="#12B76A"
+    />
+    <Path
+      d="M26.2 21.4H5.8C4.80566 21.4 4 22.2057 4 23.2C4 24.1944 4.80566 25 5.8 25H26.2C27.1943 25 28 24.1944 28 23.2C28 22.2057 27.1943 21.4 26.2 21.4Z"
+      fill="#12B76A"
+    />
+  </Svg>
+);
 // export const Icon = (props: SvgProps) => ();
 // export const Icon = (props: SvgProps) => ();
 // export const Icon = (props: SvgProps) => ();

@@ -6,17 +6,24 @@ import { PremiumIcon } from '@src/utils/icon';
 import { scaleHeight, scaleWidth } from '@src/utils/styles/mixins';
 import { Gap, Radius } from '@src/utils/styles/spacing';
 import { TypographyStyle } from '@src/utils/styles/typography';
+import { IMAGES } from '@src/assets/images';
 
-interface UserInfoProps {}
-const UserInfo: FC<UserInfoProps> = () => {
+interface UserInfoProps {
+  isGuest?: boolean;
+}
+const UserInfo: FC<UserInfoProps> = ({ isGuest }) => {
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: Gap._MEDIUM }}>
-        <MyImage source={{ uri: '' }} style={styles.avatar} />
-        <View>
-          <Text style={styles.textName}>Username123</Text>
-          <Text style={styles.textEmail}>example@gmail.com</Text>
-        </View>
+        <MyImage source={{ uri: isGuest ? IMAGES.GUEST : '' }} style={styles.avatar} />
+        {isGuest ? (
+          <Text style={styles.textEmail}>Guest</Text>
+        ) : (
+          <View>
+            <Text style={styles.textName}>Username123</Text>
+            <Text style={styles.textEmail}>example@gmail.com</Text>
+          </View>
+        )}
       </View>
       <TouchableOpacity onPress={() => {}}>
         <PremiumIcon />

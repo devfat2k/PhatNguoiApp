@@ -9,7 +9,7 @@ export const formatStringToMoney = (str: number | string): string => {
   return (isNaN(parseFloat(result)) ? '0 ' : result) + 'đ';
 };
 export const formatLicensePlate = (input: string) => {
-  const trimmed = input.trim();
+  const trimmed = input?.trim();
   const cleaned = trimmed.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
 
   if (cleaned.length === 9) {

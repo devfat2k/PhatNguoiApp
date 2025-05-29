@@ -1,45 +1,39 @@
-import React, { FC, useState } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import React, { FC } from 'react';
+import { TouchableOpacity, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { mainStackParamList } from '../../../navigation/type';
 import { MyHeader, MyWrapper } from '@components';
-import { PremiumIcon } from '@src/utils/icon';
-import { TopTabOptions } from './constants';
-import { LookupHistory, VehicleLookUp } from './components';
-import { styles } from './styles';
+import { MenuBarIcon } from '@src/utils/icon';
 
+import { VehicleLookUp } from './components';
+import { styles } from './styles';
+import { openDrawer } from '@src/navigation/RootNavigation';
+// import { BannerAd, BannerAdSize, TestIds, useForeground } from 'react-native-google-mobile-ads';
+// const adUnitId = __DEV__ ? TestIds.ADAPTIVE_BANNER : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
 interface HomeScreenProps extends NativeStackScreenProps<mainStackParamList, 'HomeScreen'> {}
 const HomeScreen: FC<HomeScreenProps> = () => {
-  const [tabSelected, setTabSelected] = useState<string>('1');
+  // const bannerRef = useRef<BannerAd>(null);
+  // useForeground(() => {
+  //   Platform.OS === 'ios' && bannerRef.current?.load();
+  // });
   return (
     <MyWrapper isSafe>
       <MyHeader
         title="Trang chủ"
         rightComponent={
-          <TouchableOpacity onPress={() => {}}>
-            <PremiumIcon />
+          <TouchableOpacity
+            onPress={() => {
+              openDrawer();
+            }}
+          >
+            <MenuBarIcon />
           </TouchableOpacity>
         }
       />
       <View style={styles.container}>
-        <View style={styles.containerTopTab}>
-          {TopTabOptions.map((itemTab, indexTab) => {
-            const isTabSelected = itemTab.id === tabSelected;
-            return (
-              <TouchableOpacity
-                style={isTabSelected ? styles.btnTabActive : styles.btnTabInActive}
-                key={indexTab}
-                onPress={() => {
-                  setTabSelected(itemTab.id);
-                }}
-              >
-                <Text style={isTabSelected ? styles.textActive : styles.textInActive}>{itemTab.title}</Text>
-              </TouchableOpacity>
-            );
-          })}
-        </View>
-        {tabSelected === '1' ? <VehicleLookUp /> : <LookupHistory />}
+        <VehicleLookUp />
       </View>
+      {/* <BannerAd ref={bannerRef} unitId={adUnitId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} /> */}
     </MyWrapper>
   );
 };

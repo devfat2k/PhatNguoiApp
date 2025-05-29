@@ -20,6 +20,21 @@ export const styles = StyleSheet.create({
     borderColor: Colors.Primary_500,
     marginTop: scaleHeight(24),
   },
+  btnLogin: {
+    width: '100%',
+    height: scaleHeight(56),
+    backgroundColor: Colors.Primary_500,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: Radius._XLARGE,
+    borderWidth: 1,
+    borderColor: Colors.Primary_500,
+    marginTop: scaleHeight(24),
+  },
+  textBtnLogin: {
+    color: Colors.Neutral_0,
+    ...TypographyStyle.BODY_MEDIUM_TIGHT_REGULAR,
+  },
   textBtn: {
     color: Colors.Primary_500,
     ...TypographyStyle.BODY_MEDIUM_TIGHT_REGULAR,

@@ -1,12 +1,12 @@
 import { navigate } from '@src/navigation/RootNavigation';
-import { LangIcon, NotiIcon, ProtectIcon, UserIcon } from '@src/utils/icon';
+import { NotiIcon, ProtectIcon } from '@src/utils/icon';
 
 export const OptionsSetting = [
-  {
-    id: '1',
-    label: 'Chỉnh sửa tên người dùng',
-    icon: <UserIcon />,
-  },
+  // {
+  //   id: '1',
+  //   label: 'Chỉnh sửa tên người dùng',
+  //   icon: <UserIcon />,
+  // },
   {
     id: '2',
     label: 'Thiết lập thông báo vi phạm',
@@ -19,9 +19,9 @@ export const OptionsSetting = [
     icon: <ProtectIcon />,
     onPress: () => navigate('PrivacyScreen'),
   },
-  {
-    id: '4',
-    label: 'Ngôn ngữ',
-    icon: <LangIcon />,
-  },
+  // {
+  //   id: '4',
+  //   label: 'Ngôn ngữ',
+  //   icon: <LangIcon />,
+  // },
 ];

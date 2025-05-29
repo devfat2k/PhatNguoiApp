@@ -4,5 +4,6 @@ const IMAGES = {
   ON_TWO: require('./two.png'),
   ON_THREE: require('./three.png'),
   LOADING: require('./loading.gif'),
+  GUEST: require('./guest.png'),
 };
 export { IMAGES };
