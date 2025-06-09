@@ -2,11 +2,9 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistStore } from 'redux-persist';
 import rootSaga from '../saga';
 import logger from 'redux-logger';
-import loadingSlice from '../slice/loadingSlice';
 import licensesSlice from '../slice/licenses';
 
 export const rootReducer = combineReducers({
-  loadingSlice,
   licensesSlice,
 });
 

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import RootNavigator from './src/navigation';
 import { Provider } from 'react-redux';
-// import { PersistGate } from 'redux-persist/integration/react';
 import { store } from './src/redux/store';
 import { PaperProvider } from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -13,8 +12,6 @@ import OnboardingScreen from './src/containers/Onboarding/OnboardingScreen';
 import { GlobalContextProvider } from './src/context/index';
 import ToastProvider from './src/global/provider';
 import { ToastMessage, Loading } from './src/global/index';
-// import { AuthProvider } from './src/hooks/useAuth/index';
-// import { FcmProvider } from './src/hooks/useFcm/index';
 const { width } = Dimensions.get('window');
 type Props = {
   onAnimationEnd: () => void;
@@ -108,12 +105,10 @@ const App = () => {
   };
   return (
     <Provider store={store}>
-      {/* <PersistGate loading={null} persistor={persistor}> */}
       <GestureHandlerRootView>
         <SafeAreaProvider>
           <PaperProvider>
             <GlobalContextProvider>
-              {/* <AuthProvider> */}
               <ToastProvider>
                 {visibleBootSplash ? <AnimatedBootSplash onAnimationEnd={handleBootSplashEnd} /> : null}
                 <Animated.View style={[styles.content, { transform: [{ translateX: slidePosition }] }]}>
@@ -122,12 +117,10 @@ const App = () => {
                 <Loading />
                 <ToastMessage />
               </ToastProvider>
-              {/* </AuthProvider> */}
             </GlobalContextProvider>
           </PaperProvider>
         </SafeAreaProvider>
       </GestureHandlerRootView>
-      {/* </PersistGate> */}
     </Provider>
   );
 };
